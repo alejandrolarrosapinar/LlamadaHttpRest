@@ -11,18 +11,22 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import domain.Persona;
 import domain.Post;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import service.PersonaInterface;
 import service.PostInterface;
+import task.TareaPersona;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button btnGet;
     private Button btnPost;
+    private Button btnGetMiLOCAL;
     private LinearLayout llayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 
                 PostInterface post =retrofit.create(PostInterface.class);
                 Post p = new Post();
-                p.setTitle("mi titulo");
+                p.setTitle("mi titulo 2");
                 p.setUserId(1);
                 p.setBody("cuerpo");
                 Call<Post> res=post.createPost(p);
@@ -108,6 +112,21 @@ public class MainActivity extends AppCompatActivity {
                         System.out.println(t.getMessage());
                     }
                 });
+
+            }
+        });
+
+        btnGetMiLOCAL = findViewById(R.id.btnGetMiLOCAL);
+        btnGetMiLOCAL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                for(int i =0;i<10;i++){
+                    TareaPersona tarea = new TareaPersona();
+                    tarea.execute();
+                }
+
 
             }
         });
